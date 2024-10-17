@@ -1,6 +1,6 @@
 from random import *
 
-#Сортировка вставкой
+#InsertionSort
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         key = arr[i]
@@ -11,7 +11,7 @@ def insertion_sort(arr):
         arr[j + 1] = key
     return arr
 
-#Быстрая сортировка
+#QuickSort
 def swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
 
@@ -33,6 +33,7 @@ def quickSort(arr, low, high):
         quickSort(arr, pi + 1, high)
 
 
+
 def RandomArr(kol,_seed):
     seed(_seed)
     A=[randint(0,50) for _ in range(kol)]
@@ -40,5 +41,7 @@ def RandomArr(kol,_seed):
 
 A=[]
 A=RandomArr(15,5)
+
+
 #print(A)
 #print(insertion_sort(A))
