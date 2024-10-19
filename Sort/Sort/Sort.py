@@ -87,6 +87,13 @@ def merge(arr, left, mid, right):
         arr[k]=R[j]
         j+=1
 def mergesort(arr, left, right):
+    if left<right:
+        mid=(left+right)//2
+
+        mergesort(arr,left,mid)
+        mergesort(arr,mid+1,right)
+
+        merge(arr,left,mid,right)
 
 A=[]
 A=RandomArr(15,5)
