@@ -55,11 +55,6 @@ def quickSort(arr, low, high):
         quickSort(arr, pi + 1, high)
 
 
-#RandomizeArray
-def RandomArr(kol,_seed):
-    seed(_seed)
-    A=[randint(0,50) for _ in range(kol)]
-    return A
 
 #MergeSort
 def merge(arr, left, mid, right):
@@ -94,6 +89,50 @@ def mergesort(arr, left, right):
         mergesort(arr,mid+1,right)
 
         merge(arr,left,mid,right)
+
+#HeapSort
+def heapify(arr, n, i):
+    largest = i 
+    l = 2 * i + 1
+    r = 2 * i + 2  
+    if l < n and arr[l] > arr[largest]:
+        largest = l
+    if r < n and arr[r] > arr[largest]:
+        largest = r
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def heapSort(arr):
+    n = len(arr) 
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+    for i in range(n - 1, 0, -1):
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, i, 0)
+
+#ShellSort
+def shellSort(arr, n):
+    gap=n//2
+    while gap>0:
+        j=gap
+        while j<n:
+            i=j-gap
+            while i>=0:
+                if arr[i+gap]>arr[i]:
+
+                    break
+                else:
+                    arr[i+gap],arr[i]=arr[i],arr[i+gap]
+                i=i-gap
+            j+=1
+        gap=gap//2
+
+#RandomizeArray
+def RandomArr(kol,_seed):
+    seed(_seed)
+    A=[randint(0,50) for _ in range(kol)]
+    return A
 
 A=[]
 A=RandomArr(15,5)
