@@ -1,3 +1,4 @@
+import time
 from random import *
 
 #InsertionSort
@@ -129,14 +130,31 @@ def shellSort(arr, n):
         gap=gap//2
 
 #RandomizeArray
-def RandomArr(kol,_seed):
-    seed(_seed)
-    A=[randint(0,50) for _ in range(kol)]
+def RandomArr(kol):
+    A=[randint(0,kol) for i in range(kol)]
+    return A
+def SortedArr(kol):
+    A=[i for i in range(kol)]
+    return A
+def ReverseSortedArr(kol):
+    A=[i for i in range(kol, 0, -1)]
+    return A
+def NearSortedArr(kol):
+    arr0=[i for i in range(kol-kol//10)]
+    arr1=[randint(0, kol) for i in range (kol//10)]
+    A=arr0+arr1
     return A
 
 A=[]
-A=RandomArr(15,5)
+#A=SortedArr(1000)
+#A=NearSortedArr(1000)
+A=ReverseSortedArr(15000)
+#A=RandomArr(1000)
 
-
+start=time.time()
 #print(A)
-#print(insertion_sort(A))
+insertion_sort(A)
+#print(A)
+end=time.time()
+print(end-start)
+
