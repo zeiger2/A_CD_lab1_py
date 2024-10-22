@@ -148,12 +148,16 @@ def NearSortedArr(kol):
 A=[]
 #A=SortedArr(1000)
 #A=NearSortedArr(1000)
-A=ReverseSortedArr(15000)
-#A=RandomArr(1000)
+#A=ReverseSortedArr(1000)
+A=RandomArr(15000)
 
 start=time.time()
 #print(A)
-insertion_sort(A)
+
+#insertion_sort(A)
+#selection_sort(A)
+bubbleSort(A)
+
 #print(A)
 end=time.time()
 print(end-start)
