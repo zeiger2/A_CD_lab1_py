@@ -1,5 +1,7 @@
 import time
 from random import *
+import sys
+sys.setrecursionlimit(10000)
 
 #InsertionSort
 def insertion_sort(arr):
@@ -35,26 +37,14 @@ def bubbleSort(arr):
             break
 
 #QuickSort
-def swap(arr, i, j):
-    arr[i], arr[j] = arr[j], arr[i]
-
-def partition(arr, low, high):
-    pivot = arr[high]
-    i = low - 1
-    for j in range(low, high):
-        if arr[j] < pivot:
-            i += 1
-            swap(arr, i, j)
-    swap(arr, i + 1, high)
-    return i + 1
-
-def quickSort(arr, low, high):
-    if low < high:
-        pi = partition(arr, low, high)
-
-        quickSort(arr, low, pi - 1)
-        quickSort(arr, pi + 1, high)
-
+def quicksort(A):
+    if len(A)>1:
+        random_index=A[randint(0, len(A)-1)]
+        less=[x for x in A if x<random_index]
+        equel=[x for x in A if x==random_index]
+        great=[x for x in A if x>random_index]
+        A=quicksort(less)+equel+quicksort(great)
+    return A
 
 
 #MergeSort
@@ -94,40 +84,93 @@ def mergesort(arr, left, right):
 #HeapSort
 def heapify(arr, n, i):
     largest = i 
-    l = 2 * i + 1
-    r = 2 * i + 2  
-    if l < n and arr[l] > arr[largest]:
+    l = 2 * i + 1   
+    r = 2 * i + 2   
+    if l < n and arr[i] < arr[l]:
         largest = l
-    if r < n and arr[r] > arr[largest]:
+    if r < n and arr[largest] < arr[r]:
         largest = r
     if largest != i:
-        arr[i], arr[largest] = arr[largest], arr[i]
+        arr[i],arr[largest] = arr[largest],arr[i]
         heapify(arr, n, largest)
 
-def heapSort(arr):
-    n = len(arr) 
-    for i in range(n // 2 - 1, -1, -1):
+def heap_sort(arr): 
+    n = len(arr)
+    for i in range(n, -1, -1):
         heapify(arr, n, i)
-    for i in range(n - 1, 0, -1):
-        arr[0], arr[i] = arr[i], arr[0]
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i] 
         heapify(arr, i, 0)
 
 #ShellSort
-def shellSort(arr, n):
-    gap=n//2
-    while gap>0:
-        j=gap
-        while j<n:
-            i=j-gap
-            while i>=0:
-                if arr[i+gap]>arr[i]:
+def shell_sort_shell(arr): # последовательть Шелла
+    gap = len(arr)//2
+    while gap > 0:
+        for value in range(gap, len(arr)):
+            temp = arr[value]
+            index = value
+            while index >= gap and arr[index-gap] > temp:
+                arr[index] = arr[index-gap]
+                index -= gap
+                arr[index] = temp
+        gap //= 2
+    return arr
 
-                    break
-                else:
-                    arr[i+gap],arr[i]=arr[i],arr[i+gap]
-                i=i-gap
-            j+=1
-        gap=gap//2
+
+
+def generate_hibbard_sequence(n):
+    gaps = []
+    k = 1 
+    while True:
+        gap = (2 ** k) - 1
+        if gap >= n:
+            break
+        gaps.append(gap)
+        k += 1 
+        gaps.reverse() 
+    return gaps
+
+def shell_sort_hibbard(arr):
+    n = len(arr)
+    gaps = generate_hibbard_sequence(n)
+    for gap in gaps:
+        for i in range(gap, n):
+            temp = arr[i]
+            j = i
+            while j >= gap and arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = temp
+
+
+
+def generate_pratt_sequence(n):
+    gaps = []
+    i, j = 0, 0
+    while True:
+        gap = (2 ** i) * (3 ** j)
+        if gap > n:
+            break
+        gaps.append(gap)
+        if i < j:  
+            j += 1
+        else:      
+            i += 1 
+            gaps.reverse()  
+    return gaps
+
+def shell_sort_pratt(arr):
+    n = len(arr)
+    gaps = generate_pratt_sequence(n)
+    for gap in gaps:
+        for i in range(gap, n):
+            temp = arr[i]
+            j = i
+            while j >= gap and arr[j - gap] > temp:
+                arr[j] = arr[j - gap]
+                j -= gap
+            arr[j] = temp
+
 
 #RandomizeArray
 def RandomArr(kol):
@@ -145,20 +188,35 @@ def NearSortedArr(kol):
     A=arr0+arr1
     return A
 
-A=[]
-#A=SortedArr(1000)
-#A=NearSortedArr(1000)
-#A=ReverseSortedArr(1000)
-A=RandomArr(15000)
+time_x=[]
+for j in range(10000, 110000, 10000):
+    print(j)
+    A=[]
+    #A=SortedArr(j)
+    #A=NearSortedArr(j)
+    #A=ReverseSortedArr(j)
+    A=RandomArr(j)
+    start=time.time()
 
-start=time.time()
+    #mergesort(A,0,j-1)
+    #quicksort(A)
+    #shell_sort_hibbard(A)
+    #shell_sort_pratt(A)
+    heap_sort(A)
+
+    end=time.time()
+    time_x.append(end-start)
+#A=[]
+#A=SortedArr(2000)
 #print(A)
-
+#start=time.time()
 #insertion_sort(A)
 #selection_sort(A)
-bubbleSort(A)
-
+#bubbleSort(A)
+#quickSort(A,0,len(A)-1)
+#end=time.time()
 #print(A)
-end=time.time()
-print(end-start)
+
+#print(end-start)
+print(time_x)
 

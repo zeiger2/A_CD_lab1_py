@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Hibart_ShellSort", "Hibart_ShellSort\Hibart_ShellSort.pyproj", "{7898645B-066A-45D1-9E7F-5C9FCD3565D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7898645B-066A-45D1-9E7F-5C9FCD3565D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7898645B-066A-45D1-9E7F-5C9FCD3565D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94A7FBF2-C112-480E-8EE8-46D8981A1004}
+	EndGlobalSection
+EndGlobal
