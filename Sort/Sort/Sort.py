@@ -1,7 +1,11 @@
 import time
 from random import *
 import sys
+from tkinter.tix import Select
 sys.setrecursionlimit(10000)
+import numpy as np
+import matplotlib.pyplot as plt
+from numpy.polynomial import Polynomial
 
 #InsertionSort
 def insertion_sort(arr):
@@ -188,24 +192,24 @@ def NearSortedArr(kol):
     A=arr0+arr1
     return A
 
-time_x=[]
-for j in range(10000, 110000, 10000):
-    print(j)
-    A=[]
+#time_x=[]
+#for j in range(10000, 110000, 10000):
+    #print(j)
+    #A=[]
     #A=SortedArr(j)
     #A=NearSortedArr(j)
     #A=ReverseSortedArr(j)
-    A=RandomArr(j)
-    start=time.time()
+    #A=RandomArr(j)
+    #start=time.time()
 
     #mergesort(A,0,j-1)
     #quicksort(A)
     #shell_sort_hibbard(A)
     #shell_sort_pratt(A)
-    heap_sort(A)
+    #heap_sort(A)
 
-    end=time.time()
-    time_x.append(end-start)
+    #end=time.time()
+    #time_x.append(end-start)
 #A=[]
 #A=SortedArr(2000)
 #print(A)
@@ -218,5 +222,210 @@ for j in range(10000, 110000, 10000):
 #print(A)
 
 #print(end-start)
-print(time_x)
+#print(time_x)
 
+#Последний шаг
+# x1=[]
+# y1=[]
+# n=10000
+# while(n>1):
+#     print(n)
+#     A=[randint(0,n) for i in range(n)]
+#     t_start=time.time()
+#     insertion_sort(A)
+#     t_end=time.time()
+#     alltime=t_end-t_start
+#     x1.append(n)
+#     y1.append(round(alltime, 5))
+#     n=n-500
+# x1.reverse()
+# y1.reverse()
+# x=np.array(x1)
+# y=np.array(y1)
+# p=np.polyfit(x, y, 2)
+# #plt.scatter(x,y)
+# plt.plot(x, np.polyval(p,x), color="blue", label="Insertion Sort")
+
+# x2=[]
+# y2=[]
+# n=10000
+# while(n>1):
+#     print(n)
+#     A=[randint(0,n) for i in range(n)]
+#     t_start=time.time()
+#     selection_sort(A)
+#     t_end=time.time()
+#     alltime=t_end-t_start
+#     x2.append(n)
+#     y2.append(round(alltime, 5))
+#     n=n-500
+# x2.reverse()
+# y2.reverse()
+# x=np.array(x2)
+# y=np.array(y2)
+# p=np.polyfit(x, y, 2)
+# #plt.scatter(x,y)
+# plt.plot(x, np.polyval(p,x), color="green", label="Selection Sort")
+
+# x3=[]
+# y3=[]
+# n=10000
+# while(n>1):
+#     print(n)
+#     A=[randint(0,n) for i in range(n)]
+#     t_start=time.time()
+#     bubbleSort(A)
+#     t_end=time.time()
+#     alltime=t_end-t_start
+#     x3.append(n)
+#     y3.append(round(alltime, 5))
+#     n=n-500
+# x3.reverse()
+# y3.reverse()
+# x=np.array(x3)
+# y=np.array(y3)
+# p=np.polyfit(x, y, 2)
+# #plt.scatter(x,y)
+# plt.plot(x, np.polyval(p,x), color="red", label="Bubble Sort")
+
+# plt.title('Quadratic asymptotics')
+# plt.xlabel('Array size (n)')
+# plt.ylabel('Time (seconds)')
+# plt.legend()
+# plt.grid(True)
+
+# plt.show()
+
+x4=[]
+y4=[]
+n=100000
+while(n>1):
+    print(n)
+    A=[randint(0,n) for i in range(n)]
+    t_start=time.time()
+    mergesort(A,0,len(A)-1)
+    t_end=time.time()
+    alltime=t_end-t_start
+    x4.append(n)
+    y4.append(round(alltime, 5))
+    n=n-10000
+x4.reverse()
+y4.reverse()
+x=np.array(x4)
+y=np.array(y4)
+p=np.polyfit(x, y, 2)
+#plt.scatter(x,y)
+plt.plot(x, np.polyval(p,x), color="blue", label="Merge Sort")
+
+x5=[]
+y5=[]
+n=100000
+while(n>1):
+    print(n)
+    A=[randint(0,n) for i in range(n)]
+    t_start=time.time()
+    quicksort(A)
+    t_end=time.time()
+    alltime=t_end-t_start
+    x5.append(n)
+    y5.append(round(alltime, 5))
+    n=n-10000
+x5.reverse()
+y5.reverse()
+x=np.array(x5)
+y=np.array(y5)
+p=np.polyfit(x, y, 2)
+#plt.scatter(x,y)
+plt.plot(x, np.polyval(p,x), color="green", label="Quick Sort")
+
+x6=[]
+y6=[]
+n=100000
+while(n>1):
+    print(n)
+    A=[randint(0,n) for i in range(n)]
+    t_start=time.time()
+    heap_sort(A)
+    t_end=time.time()
+    alltime=t_end-t_start
+    x6.append(n)
+    y6.append(round(alltime, 5))
+    n=n-10000
+x6.reverse()
+y6.reverse()
+x=np.array(x6)
+y=np.array(y6)
+p=np.polyfit(x, y, 2)
+#plt.scatter(x,y)
+plt.plot(x, np.polyval(p,x), color="red", label="Heap Sort")
+
+x7=[]
+y7=[]
+n=100000
+while(n>1):
+    print(n)
+    A=[randint(0,n) for i in range(n)]
+    t_start=time.time()
+    shell_sort_shell(A)
+    t_end=time.time()
+    alltime=t_end-t_start
+    x7.append(n)
+    y7.append(round(alltime, 5))
+    n=n-10000
+x7.reverse()
+y7.reverse()
+x=np.array(x7)
+y=np.array(y7)
+p=np.polyfit(x, y, 2)
+#plt.scatter(x,y)
+plt.plot(x, np.polyval(p,x), color="brown", label="Shell Sort, sequence Shell")
+
+x8=[]
+y8=[]
+n=100000
+while(n>1):
+    print(n)
+    A=[randint(0,n) for i in range(n)]
+    t_start=time.time()
+    shell_sort_hibbard(A)
+    t_end=time.time()
+    alltime=t_end-t_start
+    x8.append(n)
+    y8.append(round(alltime, 5))
+    n=n-10000
+x8.reverse()
+y8.reverse()
+x=np.array(x8)
+y=np.array(y8)
+p=np.polyfit(x, y, 2)
+#plt.scatter(x,y)
+plt.plot(x, np.polyval(p,x), color="black", label="Shell Sort, sequence Hibbart")
+
+x9=[]
+y9=[]
+n=100000
+while(n>1):
+    print(n)
+    A=[randint(0,n) for i in range(n)]
+    t_start=time.time()
+    shell_sort_pratt(A)
+    t_end=time.time()
+    alltime=t_end-t_start
+    x9.append(n)
+    y9.append(round(alltime, 5))
+    n=n-10000
+x9.reverse()
+y9.reverse()
+x=np.array(x9)
+y=np.array(y9)
+p=np.polyfit(x, y, 2)
+#plt.scatter(x,y)
+plt.plot(x, np.polyval(p,x), color="purple", label="Shell Sort, sequence Pratt")
+
+plt.title('Non-Quadratic asymptotics')
+plt.xlabel('Array size (n)')
+plt.ylabel('Time (seconds)')
+plt.legend()
+plt.grid(True)
+
+plt.show()
